@@ -1,4 +1,5 @@
 package org.iclass.spring_7jpa;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.time.LocalDateTime;
@@ -22,8 +23,20 @@ public class TodoCustomMethodTest {
   @Test
   void findBy1(){
     // 특정 날짜 이후의 작성된 엔티티(행) 조회
-    List<TodoEntity> list = todoRepository.findByCreatedAtAfter(LocalDateTime.of(2025, 8, 25, 0, 0, 0));
-    log.info("2025-08-15 이후의 todo : {}", list);
-    assertNotEquals(0,list.size());
+    List<TodoEntity> list = todoRepository.findByCreatedAtAfter(LocalDateTime.of(2025, 8, 30, 0, 0, 0));
+    log.info("2025-08-30 이후의 todo created : {}", list);
+    assertEquals(0,list.size());
+  }
+
+  @Test
+  void findNative(){
+    List<TodoEntity> list = todoRepository.findIncompleteTodosByUsernameNative("iclass");
+    assertNotEquals(0, list.size());
+    list = todoRepository.findIncompleteTodosByUsernameNative("himedia");
+    assertEquals(0, list.size());
+  }
+
+  @Test
+  void findJPQL(){
   }
 }

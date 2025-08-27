@@ -60,16 +60,17 @@ public class TodoRepositoryTest {
   }
 
   @Test
-  @Disabled // 테스트 안함
+  // @Disabled // 테스트 안함
   void saveDummies() {
-    String[] names = { "himedia", "iclass" };
+    todoRepository.deleteAll(); // 엔티티(테이블 행) 전체 삭제
+    String[] names = { "himedia", "iclass", "momo" };
     String[] todos = { "청소", "운동", "영어공부", "회의" };
     List<TodoEntity> list = new ArrayList<>();
-    LocalDate baseTime = LocalDate.of(2025, 8, 1);
-    IntStream.rangeClosed(1, 20).forEach(i -> {
+    LocalDate baseTime = LocalDate.of(2025, 8, 1); // 기준날짜
+    IntStream.rangeClosed(1, 21).forEach(i -> {
       TodoEntity entity = TodoEntity.builder()
           .title(todos[i % 4])
-          .username(names[i % 2])
+          .username(names[i % 3])
           .todo_date(baseTime.plusDays(i)) // 기준날짜 + i일
           .checked(i % 2 == 0) // 참이면 1, 거짓이면 0
           .build();
@@ -83,12 +84,12 @@ public class TodoRepositoryTest {
   @Test
   void saveOne() {
     TodoEntity entity = TodoEntity.builder()
-        .title("JPA숙제")
-        .username("momo")
+        .title("JPA숙제4")
+        .username("momo4")
         .todo_date(LocalDate.of(2025, 8, 25))
         .build();
-    TodoEntity savEntity = todoRepository.save(entity);
-    log.info("{}", savEntity);
-    assertNotNull(savEntity);
+    TodoEntity saveEntity = todoRepository.save(entity);
+    log.info("{}", saveEntity);
+    assertNotNull(saveEntity);
   }
 }
