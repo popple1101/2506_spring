@@ -10,5 +10,4 @@ public class Spring3mybatisApplication {
 		SpringApplication.run(Spring3mybatisApplication.class, args);
 	}
 
-
 }

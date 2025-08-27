@@ -3,35 +3,25 @@ package org.iclass.spring_3mybatis.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.iclass.spring_3mybatis.dto.BuyDto;
 import org.iclass.spring_3mybatis.dto.CustomerBuyDto;
 
-
+@Mapper
 public interface BuyMapper {
-    // 사용자 구매내역 조회(n개)
-    List<String> selectByCustomer(String customerId);
+  List<BuyDto> selectByCustomer(String customer_id);
 
-    // 상품 구매 내역 조회(n개)
-    List<String> selectByPcode(String pcode);
-    
-    // 년도 구매 내역 조회(n개)
-    List<String> selectByYear(String year);
+  List<BuyDto> selectByPcode(String pcode);
 
-    // 상품의 구매 수량 합계 조회(1개)
-    int selectSumByPcode(String quantity);
+  List<BuyDto> selectByYear(String year);
 
-    // join
-    List<CustomerBuyDto>selectSaleByCustomer(String customerId);
+  int selectSumByPcode(String pcode);
 
-    // count 집계함수
-    Map<String,Integer>selectCountByYear(String yeaString);
+  // join
+  List<CustomerBuyDto> selectSaleByCustomer(String customer_id);
 
-    List<Map<String,Object>> selectAllCountByYear();
+  // count 집계 함수
+  Map<String, Integer> selectCountByYear(String year);
 
+  List<Map<String, Object>> selectAllCountByYear();
 }
-
-
-
-
-
-
-

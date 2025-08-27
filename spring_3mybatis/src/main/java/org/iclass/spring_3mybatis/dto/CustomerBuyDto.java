@@ -8,14 +8,14 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 public class CustomerBuyDto {
-    private final String pcode;
-    private final String pname;
-    private final Integer price;
-    private final Long money;
+  private final String pcode;
+  private final String pname;
+  private final Integer price;
+  private final Long money;
 
-    @Override
-    public String toString() {
-        return "\n" + pcode + "\t" + pname + "\t" + price + "\t" + money + "\n";
-    }
+  @Override
+  public String toString() {
+    return "\n" + pcode + "\t" + pname + "\t" + price + "\t" + money + "\n";
+  }
 
 }

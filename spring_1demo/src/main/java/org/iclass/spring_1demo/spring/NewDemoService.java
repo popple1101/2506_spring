@@ -9,12 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class NewDemoService {
 
-    @Autowired
-    private NewDemoDao dao;
+  @Autowired
+  private NewDemoDao dao;
 
-    public NewDemoService() {
-        log.info("NewDemoService 생성자 - ");
-        // log.info("NewDemoService 생성자 - dao : {}", this.dao.getClass().toString());
-        // this.dao 는 null.
-    }
+  public NewDemoService() {
+    log.info("NewDemoService 생성자 - ");
+    // log.info("NewDemoService 생성자 - dao : {}", this.dao.getClass().toString()); //
+    // this.dao 는 null
+  }
+
 }
