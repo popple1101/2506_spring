@@ -14,29 +14,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class UsersService {
-	
-	 private final UserRepository userRepository;
-	 private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-	public UsersEntity getByCredentials(final String username,
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public UsersEntity getByCredentials(final String username,
             final String password, final PasswordEncoder encoder) {
 
-		UsersEntity user = userRepository.findByUsername(username);
-		if(user !=null && encoder.matches(password, user.getPassword())) {
-			return user;
-		}
-		
-		return null;
-	} 
-	
-	
- // 새로운 사용자 등록
-    //이 메소드에서 UserEntity 파라미터 객체의 변수를 수정할 수 없음
-    public void createUser(UserProfileDTO dto) {
-       String username = dto.getUsername();
+        UsersEntity user = userRepository.findByUsername(username);
+        if (user != null && encoder.matches(password, user.getPassword())) {
+            return user;
+        }
 
-       if(userRepository.existsByUsername(username)) {
-            log.warn("이미 존재하는 username : {}",username);
+        return null;
+    }
+
+    // 새로운 사용자 등록
+    // 이 메소드에서 UserEntity 파라미터 객체의 변수를 수정할 수 없음
+    public void createUser(UserProfileDTO dto) {
+        String username = dto.getUsername();
+
+        if (userRepository.existsByUsername(username)) {
+            log.warn("이미 존재하는 username : {}", username);
             throw new RuntimeException("Username already exist.");
         }
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));

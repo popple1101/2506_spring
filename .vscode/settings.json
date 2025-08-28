@@ -1,3 +1,7 @@
 {
-    "java.dependency.packagePresentation": "hierarchical"
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "gradle.nestedProjects": true,
+    "gradle.autoDetect": "on"
+
 }
